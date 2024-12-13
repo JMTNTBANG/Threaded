@@ -1,0 +1,17 @@
+div {
+  width: 225px;
+  height: 35px;
+  color: black;
+  border-radius: 15px;
+  border-color: black;
+  border-width: 5px;
+  background-color: gray;
+}
+p {
+  vertical-align: middle;
+  margin-top: 0;
+  margin-bottom: 0;
+  font-size: 30px;
+  height: 100%;
+  margin-left: 10px;
+}
