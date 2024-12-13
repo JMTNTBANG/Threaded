@@ -15,5 +15,10 @@
   "bugs": {
     "url": "https://github.com/JMTNTBANG/Threaded/issues"
   },
-  "homepage": "https://github.com/JMTNTBANG/Threaded#readme"
+  "homepage": "https://github.com/JMTNTBANG/Threaded#readme",
+  "dependencies": {
+    "ejs": "^3.1.10",
+    "express": "^4.21.2",
+    "express-session": "^1.18.1"
+  }
 }
