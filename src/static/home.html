@@ -1,4 +1,18 @@
 <link rel="stylesheet" href="home.css" />
+<script>
+    
+    window.onmessage = (message) => {
+        if (message.data.toString().startsWith("/chat?")) {
+            document.getElementById("chat-iframe").src = message.data.toString()
+        }
+    }
+    window.onload = () => {
+        document.getElementById("chat-iframe").style.width = window.innerWidth - 250;
+    }
+    window.onresize = () => {
+        document.getElementById("chat-iframe").style.width = window.innerWidth - 250;
+    }
+</script>
 <div id="chat">
     <iframe id="chat-iframe" frameBorder="0" src="chat"></iframe>
 </div>

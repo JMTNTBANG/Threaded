@@ -24,7 +24,7 @@ module.exports = {
                   for (jchannel in joined_channels) {
                     for (channel in channels) {
                         if (channels[channel].ID == joined_channels[jchannel].CHANNELID) {
-                            payload += `<div><p>${channels[channel].NAME}</p></div><br>` 
+                            payload += `<div><p onclick="window.top.postMessage('/chat?channel=${channels[channel].ID}', '*')">${channels[channel].NAME}</p></div><br>` 
                         }
                     }
                   }
