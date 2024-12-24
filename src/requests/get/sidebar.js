@@ -14,17 +14,17 @@ module.exports = {
           database.query(
             "SELECT * FROM threaded_data.member_list WHERE USERID = ?",
             [request.session.threaded.userid],
-            (err, joined_channels, fields) => {
+            (err, joined_screws, fields) => {
               if (err) throw err;
               database.query(
-                "SELECT * FROM threaded_data.channels",
-                (err, channels, fields) => {
+                "SELECT * FROM threaded_data.screws",
+                (err, screws, fields) => {
                   if (err) throw err;
                   let payload = '<link rel="stylesheet" href="sidebar.css" />'
-                  for (jchannel in joined_channels) {
-                    for (channel in channels) {
-                        if (channels[channel].ID == joined_channels[jchannel].CHANNELID) {
-                            payload += `<div><p onclick="window.top.postMessage('/chat?channel=${channels[channel].ID}', '*')">${channels[channel].NAME}</p></div><br>` 
+                  for (jscrew in joined_screws) {
+                    for (screw in screws) {
+                        if (screws[screw].ID == joined_screws[jscrew].SCREWID) {
+                            payload += `<div><p onclick="window.top.postMessage('/chat?screw=${screws[screw].ID}', '*')">${screws[screw].NAME}</p></div><br>` 
                         }
                     }
                   }
