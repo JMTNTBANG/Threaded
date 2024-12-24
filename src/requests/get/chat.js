@@ -22,12 +22,23 @@ module.exports = {
               [query.screw],
               (err, threads, fields) => {
                 if (err) throw err;
-                let payload = '<link rel="stylesheet" href="chat.css" />';
-                for (thread in threads) {
-                  payload += `<div><h1>${threads[thread].NAME}</h1><p>${threads[thread].CONTENT}</p></div><br>`;
-                }
-                response.send(payload);
-                response.end();
+                database.query(
+                  "SELECT * FROM threaded_data.users",
+                  (err, users, fields) => {
+                    if (err) throw err;
+                    let payload = '<link rel="stylesheet" href="chat.css" />';
+                    for (thread in threads) {
+                      for (user in users) {
+                        if (users[user].ID == threads[thread].AUTHORID || threads[thread].AUTHORID == -1) {
+                          if (threads[thread].AUTHORID == -1)  payload += `<div><h1>${threads[thread].NAME}</h1><h3>Posted by DEBUG on ${threads[thread].DATECREATED}</h3><br><br><p>${threads[thread].CONTENT}</p></div><br>`;
+                          else payload += `<div><h1>${threads[thread].NAME}</h1><h3>Posted by ${users[user].USERNAME} on ${threads[thread].DATECREATED}</h3><br><br><p>${threads[thread].CONTENT}</p></div><br>`;
+                        }
+                      }
+                    }
+                    response.send(payload);
+                    response.end();
+                  }
+                );
               }
             );
           });
